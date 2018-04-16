@@ -68,7 +68,7 @@ $ (function () {
     - end : **(string)** The end time of the cuepoint
   - text : **(string)** The descriptive caption.
   - playback : **(optional string) ["pause" / "play" (Default)]** Play or pause video on click.
-  
+- loop : **(boolean)** Set to true to restart the video when  the 'ended' event has been detected.
 - hover : **(string)** Class to use when hovering over cue cards.
 - active : **(string)** Class to use for all cue points that lie before the current video time.
 - inactive : **(string)** Class to use for all cue points that lie after the current video time.
@@ -80,6 +80,8 @@ Cue points will be dynamically created as divs and appended to your card contain
 ````
 
 ## Quirks
+
+### Styling
 To prevent your hover styling from being overridden by other styles:
 - Place your hover style **after** the active and inactive styles.
 ```
@@ -91,3 +93,8 @@ To prevent your hover styling from being overridden by other styles:
 ```
 .hover { color:green !important;  }
 ```
+
+### Looping
+
+If you wish to loop the video at the end of playback use the "loop" plugin configuration and NOT the "loop" html5 parameter in the video tag. Reasoning behind this is that when you use the "loop" paramater of the video tag the 'ended' event never fires, therefore never resetting the cuepoints.
+
