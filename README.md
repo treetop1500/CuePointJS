@@ -1,10 +1,10 @@
 # CuePointJS
-HTML5 video cue point creator.
+HTML5 video cue point creator.  This fork adds start and end times for cue point configuration so that you can show one cuepoint at a time, whereas the original was built to show all cuepoints initially and simply "highlight" them as they've passed.
 
-## See it in action
+## Original instructions are here:
 http://iamjohnbrown.com/cuepoint.php
 
-## Use
+## Usage
 **1. Add an HTML5 video element to your page.**
 ```
 <video id="myVideo">
@@ -31,11 +31,17 @@ http://iamjohnbrown.com/cuepoint.php
 var options = [
   points : [
     {
-      time : "00:16",
+      time : {
+        start: "00:01",
+         end: "00:04.999"
+      },
       text : "Opening sequence."
     },
     {
-      time : "03:14",
+      time : {
+        start: "00:05",
+        end: "00:09.999"
+      },
       text : "Some other descriptive caption.",
       playback : "pause"
     }
@@ -48,7 +54,7 @@ var options = [
 ];
 
 $ (function () {
-  $("#myVideo").cuePoint ("#cueCards", options);
+  $("#myVideo").cuePoint("#cueCards", options);
 });
 ```
 
@@ -57,7 +63,9 @@ $ (function () {
 
 **Options**
 - points : **(object[ ])**
-  - time : **(string)** The time at which to add a cue point.
+  - time : **(object[ ])** The timeframe at which to add a cue point.
+    - start : **(string)** The start time of the cuepoint
+    - end : **(string)** The end time of the cuepoint
   - text : **(string)** The descriptive caption.
   - playback : **(optional string) ["pause" / "play" (Default)]** Play or pause video on click.
   
